@@ -80,6 +80,17 @@ const path = 'so22'
 const token = document.cookie.replace(/(?:(?:^|.*;\s*)so22Token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 axios.defaults.headers.common['Authorization'] = token;
 export default {
+    // props is unused, just made for class example
+    props: {
+        id: {
+            type: String,
+            default: ''
+        },
+        text: {
+            type: String,
+            default: ''
+        }
+    },
   data() {
         return {
             products: [],

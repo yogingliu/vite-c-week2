@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const fakeApi = () => {
+        return new Promise((resolve, reject) => {
+            try {
+                throw new Error('custom error')
+                const result = setTimeout(() => {
+                    resolve('success')
+                }, 1000)
+            }
+            catch(error) {
+                reject({ code: 3000, message: 'something wrong'})
+            }
+        })
+    }
+    const func = async () => {
+        const productIds = [1, 2, 3, 4]
+        const results = []
+        let num = 0
+        // function1()
+        // function2()
+        // function3()
+        // function4()
+        // console.log(num)
+        // real1()
+        // real2()
+        // real3()
+        // real4()
+        // productIds.forEach(async id => {
+        //     const result = await fakeApi(id)
+        //     results.push(result)
+        //     num++
+        // })
+        for(let index = 0; index < productIds.length; index++) {
+            console.log('start')
+            try {
+                const result = await fakeApi(productIds[index])
+            }
+            catch(error) {
+                if(error.code === 3000) {
+                    console.log('3000 error')
+                }
+                console.log('log error: ', error)
+            }
+            console.log('end')
+            results.push(result)
+            num++
+        }
+        // console.log(num)
+        // console.log(results)
+        
+        console.log(JSON.parse(JSON.stringify(results)))
+    }
+    func()
+</script>
+</html>
